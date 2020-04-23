@@ -18,6 +18,6 @@ public interface VendedorDao {
 	// O tipo de lista quem escolhe sou eu
 	List<Vendedor> retornarTodosVend();
 	
-	List<Departamento> retornaDepart(Departamento dept);
+	List<Vendedor> retornaDepart(Departamento dept); 
 
 }
