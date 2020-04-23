@@ -24,6 +24,14 @@ public class Programa {
 			System.out.println(vend);
 		}
 		
+		System.out.println("\n=== Teste 3 - seller RetoraTodos ===");
+		
+		List<Vendedor> list2 = vendDao.retornarTodosVend();
+		for (Vendedor vend : list2) {
+			System.out.println(vend);
+		}
+		
+		
 	}
 
 }
