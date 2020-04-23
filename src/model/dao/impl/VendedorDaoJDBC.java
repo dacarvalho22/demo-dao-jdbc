@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,37 @@ public class VendedorDaoJDBC implements VendedorDao {
 	
 	@Override
 	public void insert(Vendedor obj) {
-		
+		PreparedStatement st = null;
+		String sql = "INSERT INTO seller " 
+					+ " (Name, Email, BirthDate, BaseSalary, DepartmentId) "
+				    + " VALUES " 
+					+ " (?, ?, ?, ?, ?)";
+					
+		try{
+			st = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			st.setString(1, obj.getNomeVend());
+			st.setString(2, obj.getEmailVend());
+			st.setDate(3, new java.sql.Date(obj.getDataAniVend().getTime()));
+			st.setDouble(4, obj.getSalarioVend());
+			st.setInt(5, obj.getDepatamento().getIdDepart());
+			
+			int linhaAf = st.executeUpdate();
+			
+			if(linhaAf > 0){
+				ResultSet rs = st.getGeneratedKeys();
+				if(rs.next()) {
+					int id = rs.getInt(1);
+					obj.setIdVend(id);
+				}
+				DB.closeStatementResultSet(null, rs);
+			}else {
+				throw new DbException("Erro ao inserir dados.");
+			}			
+		}catch(SQLException e){
+			throw new DbException(e.getMessage());
+		}finally{
+			DB.closeStatementResultSet(st, null);
+		}
 
 	}
 
@@ -92,7 +123,7 @@ public class VendedorDaoJDBC implements VendedorDao {
 		String sql = " SELECT seller.*,department.Name as DepName " + 
 				" FROM seller INNER JOIN department " + 
 				" ON seller.DepartmentId = department.Id " + 
-				" ORDER BY Name";
+				" ORDER BY Name ";
 		try{
 			st = conexao.prepareStatement(sql);
 			rs = st.executeQuery();
