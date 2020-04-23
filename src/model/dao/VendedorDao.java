@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 
+import model.entities.Departamento;
 import model.entities.Vendedor;
 
 public interface VendedorDao {
@@ -16,5 +17,7 @@ public interface VendedorDao {
 
 	// O tipo de lista quem escolhe sou eu
 	List<Vendedor> retornarTodosVend();
+	
+	List<Departamento> retornaDepart(Departamento dept);
 
 }

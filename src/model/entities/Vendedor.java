@@ -12,7 +12,7 @@ public class Vendedor implements Serializable{
 	private String emailVend;
 	private Date dataAniVend;
 	private Double salarioVend;
-	private Departamento depatamento;	
+	private Departamento depatamento;	// ASSOCIAÇÃO DEPARTAMENTO
 	
 	public Vendedor() {}
 
