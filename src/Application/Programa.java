@@ -38,7 +38,14 @@ public class Programa {
         vendDao.insert(ved2);
         System.out.println("Novo id: " + ved2.getIdVend());
 		
-		
+        System.out.println("\n=== Teste 5 - seller Update ===");
+        ved = vendDao.retornaId(1);
+        ved.setNomeVend("Fulano de tal");
+        vendDao.update(ved);
+        System.out.println("Update: atualizado os dados. ");
+        
+        
+        
 	}
 
 }
