@@ -32,20 +32,21 @@ public class Programa {
 			System.out.println(vend);
 		}
 		
-		System.out.println("\n=== Teste 4 - seller Insert ===");
-		
+		System.out.println("\n=== Teste 4 - seller Insert ===");		
         Vendedor ved2 = new Vendedor(null, "Daniel", "danielamaral@hotmail.com", new Date(), 4000.00, dept);
         vendDao.insert(ved2);
         System.out.println("Novo id: " + ved2.getIdVend());
 		
         System.out.println("\n=== Teste 5 - seller Update ===");
-        ved = vendDao.retornaId(1);
+        ved = vendDao.retornaId(11);
         ved.setNomeVend("Fulano de tal");
         vendDao.update(ved);
         System.out.println("Update: atualizado os dados. ");
         
-        
-        
+        System.out.println("\n=== Teste 6 - seller Delete ===");
+		vendDao.deleteById(14);
+		System.out.println("Deletado: dados deletados. ");        
+		
 	}
 
 }
